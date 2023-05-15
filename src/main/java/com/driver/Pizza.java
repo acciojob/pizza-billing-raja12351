@@ -52,7 +52,7 @@ public class Pizza {
         if(isVeg){
             this.bill ="Base Price Of The Pizza: 300" + "\n";
         }
-        else if(!isVeg){
+        else {
             this.bill ="Base Price Of The Pizza: 400" + "\n";
         }
         if(cheeseAdded){
