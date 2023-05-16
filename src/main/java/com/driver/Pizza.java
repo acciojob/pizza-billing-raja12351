@@ -5,6 +5,11 @@ public class Pizza {
     private int price;
     private Boolean isVeg;
     private String bill;
+    final int vegPrice = 300;
+    final int nonVegPrice = 400;
+    final int extraCheesePrice;
+    final int toppingPrice;
+    final int bagPrice = 20;
     private boolean cheeseAdded = false;
     private boolean toppingsAdded = false;
     private boolean bagAdded = false;
@@ -12,11 +17,14 @@ public class Pizza {
     public Pizza(Boolean isVeg){
         this.isVeg = isVeg;
         if(isVeg){
-            this.price += 300;
+            this.price = vegPrice;
+            this.toppingPrice = 70;
         }
         else{
-            this.price += 400;
+            this.price = nonVegPrice;
+            this.toppingPrice = 120;
         }
+        this.extraCheesePrice = 80;
     }
 
     public int getPrice(){
@@ -25,46 +33,40 @@ public class Pizza {
 
     public void addExtraCheese(){
         if(!cheeseAdded){
-            this.price += 80;
+            this.price += extraCheesePrice;
             cheeseAdded = true;
         }
     }
 
     public void addExtraToppings(){
         if(!toppingsAdded){
-            if(isVeg){
-                this.price += 70;
-            }else{
-                this.price += 120;
-            }
+           this.price += toppingPrice;
             toppingsAdded = true;
         }
     }
 
     public void addTakeaway(){
         if(!bagAdded){
-            this.price += 20;
+            this.price += bagPrice;
             bagAdded = true;
         }
     }
 
     public String getBill(){
         if(isVeg){
-            this.bill ="Base Price Of The Pizza: 300" + "\n";
+            this.bill ="Base Price Of The Pizza: " + vegPrice + "\n";
         }
         else {
-            this.bill ="Base Price Of The Pizza: 400" + "\n";
+            this.bill ="Base Price Of The Pizza: " + nonVegPrice + "\n";
         }
         if(cheeseAdded){
-            this.bill += "Extra Cheese Added: 80" + "\n";
+            this.bill += "Extra Cheese Added: " + extraCheesePrice + "\n";
         }
-        if(toppingsAdded && isVeg){
-            this.bill += "Extra Toppings Added: 70" + "\n";
-        }else if(toppingsAdded && !isVeg){
-            this.bill += "Extra Toppings Added: 120" + "\n";
+        if(toppingsAdded) {
+            this.bill += "Extra Toppings Added: " + toppingPrice + "\n";
         }
         if(bagAdded){
-            this.bill += "Paperbag Added: 20" + "\n";
+            this.bill += "Paperbag Added: " + bagPrice + "\n";
         }
         this.bill += "Total Price: " + this.price;
 
